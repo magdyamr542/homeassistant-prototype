@@ -1,0 +1,45 @@
+# Homeassistant removed this configuration and it's configured from the UI. This is gonna be a problem!!
+# mqtt:
+#   broker: mosquitto
+#   port: 1883
+#   username: admin
+#   password: password
+#   discovery: true
+#   discovery_prefix: homeassistant
+
+# # Loads default set of integrations. Do not remove.
+default_config:
+
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: "My Home Assistant Docker Instance"
+  # Location required to calculate the time the sun rises and sets
+  latitude: 51.514244
+  longitude: 7.468429
+  time_zone: "Europe/Berlin"
+
+mqtt:
+  sensor:
+    - name: "Bedroom Temperature"
+      state_topic: "home/bedroom/temperature"
+      icon: "mdi:thermometer"
+      unit_of_measurement: "°F"
+    - name: "Kitchen Temperature"
+      state_topic: "home/kitchen/temperature"
+      icon: "mdi:thermometer"
+      unit_of_measurement: "°F"
+
+influxdb:
+  api_version: "2"
+  ssl: false
+  host: "influxdb"
+  port: "8086"
+  bucket: homeassistant
+  max_retries: 5
+  token: lIm2WGTw9wnTINJqrmjur3X9TFtDZcXO7sI86rlHOpUoW2PY-JFGqoqg8wICuXAsk2rTRH2fypoExbv0tuqSNQ==
+  organization: gems
+  tags:
+    source: HA
+  include:
+    domains:
+      - sensor

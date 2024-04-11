@@ -1,0 +1,46 @@
+services:
+  homeassistant:
+    profiles:
+      - homeassistant
+    container_name: homeassistant
+    image: "ghcr.io/home-assistant/home-assistant:2024.4.2"
+    volumes:
+      - ./homeassistant_config/:/config
+      - /etc/localtime:/etc/localtime:ro
+      - /run/dbus:/run/dbus:ro
+    restart: unless-stopped
+    ports:
+      - "8123:8123"
+      - "8124:8124"
+    privileged: true
+    depends_on:
+      - mosquitto
+      - influxdb
+
+  # username: admin
+  # password: password
+  mosquitto:
+    image: "eclipse-mosquitto:2"
+    profiles:
+      - homeassistant
+    container_name: mosquitto
+    volumes:
+      - ./mosquitto_config:/mosquitto/config/
+      - mqtt_broker_data:/mosquitto/data/
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+
+  influxdb:
+    image: influxdb:2
+    profiles:
+      - influx
+    ports:
+      - "8086:8086"
+    user: root
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+
+volumes:
+  mqtt_broker_data:
+  influxdb_data:

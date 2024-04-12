@@ -39,3 +39,9 @@ influx-initial-setup:
 	--org gems \
 	--bucket homeassistant \
 	--force
+
+.PHONY:influx-download-cli
+influx-download-cli:
+       wget https://dl.influxdata.com/influxdb/releases/influxdb2-client-2.7.3-linux-amd64.tar.gz
+       tar zxvf influxdb2-client-2.7.3-linux-amd64.tar.gz
+       sudo mv influx /usr/bin/influx

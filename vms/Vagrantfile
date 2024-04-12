@@ -14,12 +14,17 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 8086, host: 8086
   # 2. home assistant
   config.vm.network "forwarded_port", guest: 8123, host: 8123
+  # 3. mosquitto
+  config.vm.network "forwarded_port", guest: 1883, host: 1883
+
+  # Setup cli tools
+  config.vm.provision "shell", path: "../setup.sh"
 
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
     vb.customize ["modifyvm", :id, "--memory", "2048"]
-    vb.customize ["modifyvm", :id, "--cpus", "1"]
+    vb.customize ["modifyvm", :id, "--cpus", "2"]
   end
 
 end

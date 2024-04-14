@@ -1,3 +1,4 @@
 homeassistant_config/*
 !homeassistant_config/configuration.yaml
 *.vagrant*
+vms/*.log

@@ -2,8 +2,9 @@
 
 1. Install [vagrant](https://developer.hashicorp.com/vagrant/install?product_intent=vagrant)
 1. Install [virtual box](https://www.virtualbox.org/wiki/Downloads)
+1. Prepare the vm. Go to the vms directory `cd vms`
 1. Create the vm using `vagrant up` (this will take some time since go will be installed in the vm as well)
-1. SSH into the vm using `cd vms && vagrant ssh`
+1. SSH into the vm using `vagrant ssh`
 1. Bootstrap influx db and create the auth token
    - `make up-influx`
    - `make influx-initial-setup`

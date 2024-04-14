@@ -17,7 +17,8 @@ sudo mv influx /usr/bin/influx
 
 # install golang version 1.20 using the go version manager gvm
 sudo apt-get install -y curl git mercurial make binutils bison gcc build-essential
-bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+sudo -u vagrant -H bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+
 source /home/vagrant/.gvm/scripts/gvm
 
 gvm install go1.4 -B
